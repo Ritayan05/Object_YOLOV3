@@ -19,7 +19,7 @@ cap.set(4, 720)   # Height
 cap.set(10, 70)   # Brightness
 
 # Load YOLO
-net = cv2.dnn.readNet("yolov4.weights", "yolov4.cfg")
+net = cv2.dnn.readNet("yolov4.weights", "yolov4.cfg") # to use yolov3 replace yolov4 to yolov3 to both
 layer_names = net.getLayerNames()
 output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
 
