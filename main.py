@@ -12,13 +12,14 @@ def speak_text(text):
     engine.runAndWait()
 
 # Video capture
+url = 'http://192.168.137.89:81/stream'
 cap = cv2.VideoCapture(0)  # Use 0 for webcam
 cap.set(3, 1280)  # Width
 cap.set(4, 720)   # Height
 cap.set(10, 70)   # Brightness
 
 # Load YOLO
-net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
+net = cv2.dnn.readNet("yolov4.weights", "yolov4.cfg")
 layer_names = net.getLayerNames()
 output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
 
@@ -34,7 +35,7 @@ def calculate_distance(box_width, focal_length, known_width):
 known_width = 50  # Example: Width of a standard credit card
 
 # Focal length of the camera (experimentally determined or obtained from camera specifications)
-focal_length = 600  # Example value, needs to be adjusted based on your camera setup
+focal_length = 400  # Example value, needs to be adjusted based on your camera setup
 
 while True:
     # Read frame
@@ -74,7 +75,7 @@ while True:
                 class_ids.append(class_id)
 
     # Apply Non-Maxima Suppression
-    indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
+    indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.2)
 
     # Draw bounding boxes and labels on the image
     for i in range(len(boxes)):
