@@ -12,8 +12,8 @@ def speak_text(text):
     engine.runAndWait()
 
 # Video capture
-url = 'http://192.168.137.89:81/stream'
-cap = cv2.VideoCapture(0)  # Use 0 for webcam
+url = 'https://570665e56596e0568591082dafeaead9.loophole.site/stream'
+cap = cv2.VideoCapture(url)  # Use 0 for webcam
 cap.set(3, 1280)  # Width
 cap.set(4, 720)   # Height
 cap.set(10, 70)   # Brightness
